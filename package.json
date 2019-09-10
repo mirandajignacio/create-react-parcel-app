@@ -1,0 +1,30 @@
+{
+  "name": "create-react-parcel-app",
+  "version": "1.0.0",
+  "description": "create-react-parcel-app",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "parcel-bundler": "^1.12.3",
+    "typescript": "^3.6.2"
+  },
+  "scripts": {
+    "dev": "parcel src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mirandajignacio/create-react-parcel-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mirandajignacio/create-react-parcel-app/issues"
+  },
+  "homepage": "https://github.com/mirandajignacio/create-react-parcel-app#readme"
+}
