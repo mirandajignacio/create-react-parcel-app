@@ -4,10 +4,12 @@
   "description": "create-react-parcel-app",
   "main": "index.js",
   "dependencies": {
+    "@reach/router": "^1.2.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
+    "@types/reach__router": "^1.2.4",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "parcel-bundler": "^1.12.3",
