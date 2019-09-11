@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Link, RouteComponentProps } from '@reach/router';
 import styled from 'styled-components';
-
+import { useCountState } from './context/AppContext';
 const Container = styled.div``;
 
 const Home: FunctionComponent<RouteComponentProps> = () => (
@@ -20,6 +20,9 @@ const About: FunctionComponent<RouteComponentProps> = () => (
 );
 
 const App = () => {
+  const count = useCountState();
+  console.log({ count });
+  // const renderCount = useRenderCounter()
   return (
     <Router>
       <Home path="/" />
