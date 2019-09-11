@@ -1,12 +1,15 @@
 import React, { FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Link, RouteComponentProps } from '@reach/router';
+import styled from 'styled-components';
+
+const Container = styled.div``;
 
 const Home: FunctionComponent<RouteComponentProps> = () => (
-  <div>
+  <Container>
     Home <br />
     <Link to="/about">About</Link>
-  </div>
+  </Container>
 );
 
 const About: FunctionComponent<RouteComponentProps> = () => (
