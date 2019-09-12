@@ -29,7 +29,7 @@ const Home: FunctionComponent<RouteComponentProps> = () => {
 
 const About: FunctionComponent<RouteComponentProps> = () => (
   <div>
-    About <br />
+    About <br></br>
     <Link to="/">Home</Link>
   </div>
 );
