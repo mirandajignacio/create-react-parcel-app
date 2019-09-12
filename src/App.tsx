@@ -1,16 +1,31 @@
 import React, { FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Link, RouteComponentProps } from '@reach/router';
-import styled from 'styled-components';
 
-const Container = styled.div``;
+import {
+  useCountUpdater,
+  useCountState,
+  CountProvider
+} from './context/AppContext';
 
-const Home: FunctionComponent<RouteComponentProps> = () => (
-  <Container>
-    Home <br />
-    <Link to="/about">About</Link>
-  </Container>
-);
+const Home: FunctionComponent<RouteComponentProps> = () => {
+  const count = useCountState();
+  const increment = useCountUpdater();
+  return (
+    <div>
+      Home <br />
+      {count} <br></br>
+      <button
+        onClick={() => {
+          increment();
+        }}
+      >
+        +1
+      </button>
+      <Link to="/about">About</Link>
+    </div>
+  );
+};
 
 const About: FunctionComponent<RouteComponentProps> = () => (
   <div>
@@ -21,10 +36,12 @@ const About: FunctionComponent<RouteComponentProps> = () => (
 
 const App = () => {
   return (
-    <Router>
-      <Home path="/" />
-      <About path="/about" />
-    </Router>
+    <CountProvider>
+      <Router>
+        <Home path="/" />
+        <About path="/about" />
+      </Router>
+    </CountProvider>
   );
 };
 
