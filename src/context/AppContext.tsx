@@ -1,27 +1,24 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 
-const AppStateContext = React.createContext({});
-const AppUpdaterContext = React.createContext({});
+const CountStateContext = React.createContext(0);
+const CountUpdaterContext = React.createContext({
+  setCount: (f: (v: number) => number) => {}
+});
 
-// const AppUpdaterContext = React.createContext<() => void>(() => {});
-
-// const AppUpdaterContext = React.createContext({
-//   setCount: (f: (v: number) => number) => {}
-// });
-
-const AppProvider: FunctionComponent = props => {
+const CountProvider: FunctionComponent = props => {
   const [count, setCount] = React.useState(0);
+  useEffect(() => console.log('asd'), [setCount]);
   return (
-    <AppStateContext.Provider value={count}>
-      <AppUpdaterContext.Provider value={{ setCount }}>
+    <CountStateContext.Provider value={count}>
+      <CountUpdaterContext.Provider value={{ setCount }}>
         {props.children}
-      </AppUpdaterContext.Provider>
-    </AppStateContext.Provider>
+      </CountUpdaterContext.Provider>
+    </CountStateContext.Provider>
   );
 };
 
 function useCountState() {
-  const countState = React.useContext(AppStateContext);
+  const countState = React.useContext(CountStateContext);
   if (typeof countState === undefined) {
     throw new Error('useCountState must be used within a CountProvider');
   }
@@ -29,14 +26,15 @@ function useCountState() {
 }
 
 function useCountUpdater() {
-  const { setCount } = React.useContext(AppUpdaterContext);
+  const { setCount } = React.useContext(CountUpdaterContext);
   if (typeof setCount === undefined) {
     throw new Error('useCountUpdater must be used within a CountProvider');
   }
   const increment = React.useCallback(() => {
     setCount((c: number) => c + 1);
+    console.log('setCount');
   }, [setCount]);
   return increment;
 }
 
-export { AppProvider, useCountState, useCountUpdater };
+export { CountProvider, useCountState, useCountUpdater };

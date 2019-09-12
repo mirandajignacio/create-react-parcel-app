@@ -1,16 +1,31 @@
 import React, { FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Link, RouteComponentProps } from '@reach/router';
-import styled from 'styled-components';
-import { useCountState } from './context/AppContext';
-const Container = styled.div``;
 
-const Home: FunctionComponent<RouteComponentProps> = () => (
-  <Container>
-    Home <br />
-    <Link to="/about">About</Link>
-  </Container>
-);
+import {
+  useCountUpdater,
+  useCountState,
+  CountProvider
+} from './context/AppContext';
+
+const Home: FunctionComponent<RouteComponentProps> = () => {
+  const count = useCountState();
+  const increment = useCountUpdater();
+  return (
+    <div>
+      Home <br />
+      {count} <br></br>
+      <button
+        onClick={() => {
+          increment();
+        }}
+      >
+        +1
+      </button>
+      <Link to="/about">About</Link>
+    </div>
+  );
+};
 
 const About: FunctionComponent<RouteComponentProps> = () => (
   <div>
@@ -20,14 +35,13 @@ const About: FunctionComponent<RouteComponentProps> = () => (
 );
 
 const App = () => {
-  const count = useCountState();
-  console.log({ count });
-  // const renderCount = useRenderCounter()
   return (
-    <Router>
-      <Home path="/" />
-      <About path="/about" />
-    </Router>
+    <CountProvider>
+      <Router>
+        <Home path="/" />
+        <About path="/about" />
+      </Router>
+    </CountProvider>
   );
 };
 
