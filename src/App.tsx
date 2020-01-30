@@ -1,13 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Link, RouteComponentProps } from '@reach/router';
 
-import {
-  useCountUpdater,
-  useCountState,
-  CountProvider
-} from './context/AppContext';
-
+console.log('asdsa');
+import { useCountUpdater, useCountState, CountProvider } from './context/AppContext';
+console.log('me rompi');
 const Home: FunctionComponent<RouteComponentProps> = () => {
   const count = useCountState();
   const increment = useCountUpdater();
@@ -16,7 +13,7 @@ const Home: FunctionComponent<RouteComponentProps> = () => {
       Home <br />
       {count} <br></br>
       <button
-        onClick={() => {
+        onClick={(): void => {
           increment();
         }}
       >
@@ -45,4 +42,6 @@ const App = () => {
   );
 };
 
+console.log('me rompi');
+console.log({ React });
 ReactDOM.render(<App />, document.getElementById('root'));
